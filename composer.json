@@ -1,0 +1,23 @@
+{
+    "name": "marknife/api",
+    "description": "Marknife API Wrapper for PHP",
+    "type": "wrapper",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Jose Bernalte",
+            "email": "yo@josebernalte.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.23"
+    },
+    "autoload":
+    {
+        "psr-0":
+        {
+            "Marknife": "src/"
+        }
+    }
+}
