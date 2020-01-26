@@ -32,9 +32,11 @@
         */
         public $authtype;
 
-        function __construct($token, $method = 'GET', $version = 1, $authtype='Bearer')
+        function __construct($user, $key, $method = 'GET', $version = 1, $authtype='Bearer')
         {
-            $this->token    = $token;
+            $this->token    = $user;
+            $this->user     = $user;
+            $this->key      = $key;
             $this->method   = $method;
             $this->version  = $version;
             $this->authtype = $authtype;
@@ -47,18 +49,70 @@
         {
             $this->Read('/help', $callback, $options);
         }
-
+        public function Me($callback, $options = null)
+        {
+            $this->Read('/me', $callback, $options);
+        }
+        public function Contacts($callback, $options = null)
+        {
+            $this->Read('/contacts', $callback, $options);
+        }
         public function Messages($callback, $options = null)
         {
             $this->Read('/messages', $callback, $options);
         }
+        public function Forms($callback, $options = null)
+        {
+            $this->Read('/forms', $callback, $options);
+        }
+        public function Books($callback, $options = null)
+        {
+            $this->Read('/forms', $callback, $options);
+        }
+        public function Qrs($callback, $options = null)
+        {
+            $this->Read('/qrs', $callback, $options);
+        }
+        public function Events($callback, $options = null)
+        {
+            $this->Read('/events', $callback, $options);
+        }
+        public function Resources($callback, $options = null)
+        {
+            $this->Read('/resources', $callback, $options);
+        }
+
 
         private function Read($path, $callback, $params)
         {
             $method = 'GET';
             $this->Call($path, $callback, $params);
         }
-
+        private function Save($path, $callback, $params)
+        {
+            $method = 'POST';
+            $this->Call($path, $callback, $params);
+        }
+        private function Delete($path, $callback, $params)
+        {
+            $method = 'DELETE';
+            $this->Call($path, $callback, $params);
+        }
+        private function Update($path, $callback, $params)
+        {
+            $method = 'PUT';
+            $this->Call($path, $callback, $params);
+        }
+        private function Patch($path, $callback, $params)
+        {
+            $method = 'PATCH';
+            $this->Call($path, $callback, $params);
+        }
+        private function Purge($path, $callback, $params)
+        {
+            $method = 'PURGE';
+            $this->Call($path, $callback, $params);
+        }
         private function Call($path, $callback, $params)
         {
             if(empty($this->token))

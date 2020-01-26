@@ -1,7 +1,10 @@
 <?php
     require_once __DIR__ . '/vendor/autoload.php';
 
-    $m = new Marknife\Api('');
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+
+    $m = new Marknife\Api(getenv('APIUSER'), getenv('APIKEY'));
 
     if($m->SayHello() != 'Hello World!')
     {
@@ -17,5 +20,6 @@
     $m->Messages(function($err, $data, $params)
     {
         if($err) echo $err;
-        print_r($data. "\n\n");
+
+        print_r($data);
     });
